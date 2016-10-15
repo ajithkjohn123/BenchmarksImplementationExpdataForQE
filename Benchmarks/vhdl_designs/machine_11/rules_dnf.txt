@@ -1,0 +1,41 @@
+1 Log_And,c_0,e_1 --> c_0
+1 Log_And,c_0,c_1 --> c_0
+1 Log_And,c_0,c_0 --> c_0
+1 Log_And,c_1,c_0 --> c_0
+1 Log_And,c_1,e_1 --> e_1
+1 Log_And,c_1,c_1 --> c_1
+1 Log_And,e_1,c_0 --> c_0
+1 Log_And,e_1,c_1 --> e_1
+1 Log_Or,c_0,e_1 --> e_1
+1 Log_Or,c_0,c_1 --> c_1
+1 Log_Or,c_0,c_0 --> c_0
+1 Log_Or,c_1,c_0 --> c_1
+1 Log_Or,c_1,e_1 --> c_1
+1 Log_Or,c_1,c_1 --> c_1
+1 Log_Or,e_1,c_0 --> e_1
+1 Log_Or,e_1,c_1 --> c_1
+1 Add,e_1,c_0 --> e_1
+1 Add,c_0,e_1 --> e_1
+1 Ternary,e_1,e_2,e_2 --> e_2
+1 Ternary,e_1,c_x,c_x --> c_x
+1 Ternary,c_x,e_1,e_1 --> e_1
+1 Ternary,c_1,c_x,c_y --> c_x
+1 Ternary,c_1,e_1,e_2 --> e_1
+1 Ternary,c_0,e_1,e_2 --> e_2
+3 Ternary,e_1,e_2,Ternary,e_1,e_3,e_4 --> Ternary,e_1,e_2,e_4
+1 Sel,Sel,e_1,c_x,c_y,c_x,c_y --> Sel,e_1,c_x,c_y
+1 Sel,Ternary,e_1,e_2,e_3,c_x,c_y --> Ternary,e_1,Sel,e_2,c_x,c_y,Sel,e_3,c_x,c_y
+1 Log_Equal,e_2,Ternary,e_1,e_3,e_4 --> Ternary,e_1,Log_Equal,e_2,e_3,Log_Equal,e_2,e_4
+1 Log_Equal,Ternary,e_1,e_3,e_4,e_2 --> Ternary,e_1,Log_Equal,e_2,e_3,Log_Equal,e_2,e_4
+1 Log_Inequal,e_2,Ternary,e_1,e_3,e_4 --> Ternary,e_1,Log_Inequal,e_2,e_3,Log_Inequal,e_2,e_4
+1 Log_Inequal,Ternary,e_1,e_3,e_4,e_2 --> Ternary,e_1,Log_Inequal,e_2,e_3,Log_Inequal,e_2,e_4
+1 Add,e_2,Ternary,e_1,e_3,e_4 --> Ternary,e_1,Add,e_2,e_3,Add,e_2,e_4
+1 Add,Ternary,e_1,e_3,e_4,e_2 --> Ternary,e_1,Add,e_3,e_2,Add,e_4,e_2
+1 Sub,e_2,Ternary,e_1,e_3,e_4 --> Ternary,e_1,Sub,e_2,e_3,Sub,e_2,e_4
+1 Sub,Ternary,e_1,e_3,e_4,e_2 --> Ternary,e_1,Sub,e_3,e_2,Sub,e_4,e_2
+1 Log_Equal,e_1,e_2 --> c_1 if Log_Equal,e_1,e_2
+1 Log_Equal,e_1,e_2 --> c_0 if LOG_NOT,Log_Equal,e_1,e_2
+1 Log_Equal,e_1,e_2 --> Log_Equal,e_2,e_1 if IsHexConst,e_1
+1 Ternary,e_1,c_0,e_1 --> c_0
+
+

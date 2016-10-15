@@ -1,0 +1,24 @@
+#ifndef HELPING_FUNCTIONS_H
+#define HELPING_FUNCTIONS_H
+#include <string>
+#include <iostream>
+#include <string>
+
+
+//#include "CDFGNodes.h"
+using namespace std;
+
+
+//void printNodeWidth(DataNode *data_node);
+int convertToInteger(string str);
+int convertToDigit(char ch);
+long int binaryStringToInteger(string str); // Note that this function is ill-named.
+string integerToBinaryString(int i);
+string integerToString(int i);
+string hexStringToBinaryString(string str);
+//void checkCountOfParentModules(EntryNode* entry_node);
+int stringToInteger(string s);
+string integerToBinaryStringWithZeroPadding(unsigned long long int i, int width);
+unsigned long long int binaryStringToULINT(string str);
+
+#endif

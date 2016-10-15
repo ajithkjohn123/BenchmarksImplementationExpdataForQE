@@ -1,0 +1,74 @@
+#include "CLiteral.h"
+
+extern CHelper MANAGER;
+
+CLiteral::CLiteral()
+{
+}
+
+CLiteral::~CLiteral()
+{
+}
+
+CLiteral::CLiteral(int type, string value, string unit):COperand(type,unit)
+{
+	this->value = value;
+}
+
+string CLiteral::getValue()
+{
+	return value;
+}
+
+void CLiteral::print()
+{
+	//cout<<"OP is     "<<value<<endl;
+}
+
+string CLiteral::getOper()
+{
+	return value+ " "+ unit;
+}
+
+string CLiteral::getName()
+{
+	return "WHATTTTTT";
+}
+
+int CLiteral::adjustRange(string entityName)
+{
+	return -1;
+
+} 
+
+bool CLiteral::unAdjusted()
+{
+	return false;
+}
+
+void CLiteral::setLowerBits(int numberofbits)
+{
+
+}
+
+CDAGNode* CLiteral::getDAG(string entName, int previous, set<string>& setRelation)
+{
+	CDAGNode * final_expression = NULL;
+	
+	char *temp1 = strdup(value.c_str());
+
+	final_expression= MANAGER.createDAG(this->value);
+	
+	return final_expression;	
+}
+
+CDAGNode* CLiteral::getSymbolicExpressions(string entName, int delta, set<string>& setRelation,  list<ProcessSExpressions*> & SymbolicExpressions)
+{
+	CDAGNode * final_expression = NULL;
+	
+	//char *temp1 = strdup(value.c_str());
+
+	final_expression= MANAGER.createDAG(this->value);
+	
+	return final_expression;	
+}

@@ -1,0 +1,8 @@
+column 1 = File Name
+column 2 = Initial Dag Size
+column 3 = Total Vars
+column 4 = Total Vars to Eliminate
+column 5 = Total Bits to Eliminate
+column 6 = Total Time for Quantifier Elimination from dag (In seconds)
+column 7 = Maximum intermediate LMDD Size
+

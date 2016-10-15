@@ -1,0 +1,27 @@
+Column1 = Type of benchmark
+Column2 = Number of benchmarks at conjunction level
+Column3 = (Max number of LMIs, Min number of LMIs, Avg number of LMIs)
+Column4 = (Max number of LMEs, Min number of LMEs, Avg number of LMEs)
+Column5 = (Max number of LMDs, Min number of LMDs, Avg number of LMDs)
+Column6 = (Max number of variables, Min number of variables, Avg number of variables)
+Column7 = (Max number of variables to eliminate, Min number of variables to eliminate, Avg number of variables to eliminate)
+Column8 = Avg number of bits
+Column9 = Avg numbr of bits to eliminate
+Column10 = Avg contribution of Layer1 (Contribution of Layer_i = Quantifiers eliminated by Layer_i/Total number of quantifiers)
+Column11 = Avg contribution of Layer2
+Column12 = Avg contribution of Layer3
+Column13 = Avg effectiveness of Layer1 (Effectiveness of Layer_i = Quantifiers eliminated by Layer_i/Quantifiers given to Layer_i)
+Column14 = Avg effectiveness of Layer2
+Column15 = Avg effectiveness of Layer3
+Column16 = Avg Layer1 Time Per Quantifier Eliminated
+Column17 = Avg Layer2 Time Per Quantifier Eliminated
+Column18 = Avg Layer3 Time Per Quantifier Eliminated
+Column19 = Avg Project Time Per Quantifier
+Column20 = Avg Number of Quantifiers Eliminated by Layer1
+Column21 = Avg Number of Quantifiers Eliminated by Layer2
+Column22 = Avg Number of Quantifiers Eliminated by Layer3
+
+LinDD	52836	(88,0,18.931789)	(60,0,10.084601)	(35,0,8.134265)	(141,1,39.914679)	(139,1,38.107029)	638.634870	609.712469	0.510366	0.436436	0.053198	0.510366	0.923966	1.000000	2.668104	5.177114	13148.934633	674.191760	18.595087	19.258044	0.253899
+
+
+Real	7335	(4,0,0.371506)	(16,0,6.281527)	(31,0,1.755283)	(21,1,9.270757)	(20,1,7.806408)	106.420177	86.788957	0.949029	0.044918	0.006053	0.949029	0.955373	1.000000	1.435230	6.146648	160.657895	2.584843	7.635992	0.163736	0.006680

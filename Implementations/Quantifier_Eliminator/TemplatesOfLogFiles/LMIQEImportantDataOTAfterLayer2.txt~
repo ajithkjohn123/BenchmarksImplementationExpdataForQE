@@ -1,0 +1,17 @@
+column 1 = Input File Name
+column 2 = Original Conjunction Number
+column 3 = Number of LMIs in the conjunction
+column 4 = Number of LMEs in the conjunction
+column 5 = Number of LMDs in the conjunction
+column 6 = Number of variables in the conjunction
+column 7 = Number of variables to eliminate in the conjunction
+column 8 = Number of bits in the conjunction
+column 9 = Number of bits to eliminate in the conjunction
+column 10 = Number of variables to eliminate in the input to Layer 2 (Dropping)
+column 11 = Unimportant
+column 12 = Number of variables to eliminate in the input to Layer 3 (Omega Test)
+column 13 = Time spent by Layer 1 (milliseconds) (LME based simplification)
+column 14 = Time spent by Layer 2 (milliseconds) (Dropping)
+column 15 = Time spent by Layer 3 (milliseconds) (Dummy layer)
+column 16 = Time spent by Layer 3 (milliseconds) (Omega Test)
+

@@ -1,0 +1,20 @@
+DeltaTR_OUT_CONTROL.smt	62	152
+DeltaTR_RFRNC_OUT.smt	1	20
+i_action_movePage.smt	76	21
+i_check_idleness.smt	14	24
+i_config_insert.smt	36	26
+i_cuddAddIteRecur.smt	3	33
+i_curs_set.smt	101	22
+i_ddGroupSiftingAux.smt	3	27
+i_demux_seek_mpg.smt	30	47
+i_foreach_dirinpath.smt	20	23
+i_get_be24.smt	2	38
+i_get_le24.smt	2	39
+i_muscle_insert_base_table.smt	33	23
+i_muscle_insert_int_table.smt	32	23
+i_muscle_insert_symbol_number_table.smt	32	23
+i_muscle_insert_unsigned_int_table.smt	36	23
+i_pfork.smt	1	31
+i_reposition_children.smt	134	31
+i_url_fseek.smt	44	22
+

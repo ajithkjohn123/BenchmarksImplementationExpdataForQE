@@ -1,0 +1,1 @@
+always(((next[1](reset=0))&&(next[2](reset=1)))=>(next[2](nloss=0)))[499]

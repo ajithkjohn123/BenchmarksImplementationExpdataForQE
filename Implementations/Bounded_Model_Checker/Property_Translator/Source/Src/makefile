@@ -1,0 +1,33 @@
+CFLAGS=-g 
+LDFLAGS=
+INCLUDES=-I. -I../include
+YFLAGS=-d -v -t -y
+DM_DIR=../DAGManager
+INC=../DAGManager/
+OBJS=$(INC)CHelper.o $(INC)CDAGNode.o $(INC)DAG_hash_table.o $(INC)FG_hash_table.o $(INC)Factor_graph_Node.o propTransLex.lex.o propTransYacc.tab.o
+
+#all in one
+all : yacc lex link exec
+# yacc rules
+yacc :
+	bison -d -p pp propTransYacc.y
+	#bison -y -d propTransYacc.y
+# lex rules
+lex :
+	flex -Ppp propTransLex.l
+	#flex propTransLex.l
+	mv lex.pp.c propTransLex.lex.c
+# link rules
+link : 
+	g++ -c $(INCLUDES) $(CFLAGS) -I $(DM_DIR) propTransLex.lex.c -o propTransLex.lex.o
+	g++ -c $(INCLUDES) $(CFLAGS) -I $(DM_DIR) propTransYacc.tab.c -o propTransLex.tab.o
+	g++ -c $(INCLUDES) $(CFLAGS) -I $(DM_DIR) propTransLex.lex.c propTransYacc.tab.c main.cpp
+	#g++ -c  -g $(INCLUDES) $(CFLAGS) -I $(DM_DIR) y.tab.c lex.yy.c main.cpp
+
+#exec rules
+exec : 
+	g++ $(OBJS) main.o -o propTrans
+
+#cleaning rules
+clean : 
+	rm  *.o  propTrans

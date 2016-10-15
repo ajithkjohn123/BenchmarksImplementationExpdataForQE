@@ -1,0 +1,138 @@
+/* 	
+*	Property Translator - LEX
+*	Author: Nikhil Saxena
+*/
+%{
+	#include "propTransYacc.tab.h"
+	void pperror(char *);
+%}
+%%
+(next)				{
+					pplval.str = "next";
+					return X;
+				}
+(eventually)			{
+					pplval.str = "eventually";
+					return F;
+				}
+(always)			{
+					pplval.str = "always";
+					return G;
+				}
+(never)				{
+					pplval.str = "never";
+					return N;
+				}
+0b[0-1]+			{
+					pplval.str = pptext;
+					return BVCONSTT;
+				}
+[a-z]+[_]*[a-z0-9]*		{
+					pplval.str = pptext;
+					return IDENTIFIER;
+				}
+[0-9]+				{
+					pplval.iVal = atoi(pptext);
+					return INTEGER;
+				}
+"="				{
+					pplval.str = "=";
+					return OP;
+				}
+"<"				{
+					pplval.str = "<";
+					return OP;
+				}
+"<="				{
+					pplval.str = "<=";
+					return OP;
+				}
+
+"=>"				{
+					pplval.str = "=>";
+					return IMPLIES; 
+				}
+"&&"				{
+					pplval.str = "&&";
+					return AND; 
+				}
+"||"				{
+					pplval.str = "||";
+					return OR; 
+				}
+"!"				{
+					pplval.str = "!";
+					return NOT; 
+				}
+"-"				{
+					pplval.str = "-";
+					return ARITHOP; 
+				}
+"+"				{
+					pplval.str = "+";
+					return ARITHOP; 
+				}
+"*"				{
+					pplval.str = "*";
+					return ARITHOP; 
+				}
+"&"				{
+					pplval.str = "&";
+					return BV_BIN_OP;
+				}
+"|"				{
+					pplval.str = "|";
+					return BV_BIN_OP;
+				}
+"~"				{
+					pplval.str = "~";
+					return BV_NOT;
+				}
+":"				{
+					pplval.str = "select";
+					return SELECT;
+				}
+";"				{
+					pplval.str = "sequence";
+					return SEQUENCE;
+				}
+"@"				{ 	
+					pplval.str = "concat";
+					return CONCAT; 
+				}
+				
+"{"				{
+					pplval.str = "{";
+					return L_BRACE;
+				}
+"}"				{
+					pplval.str = "}";
+					return R_BRACE;
+				}
+"("				{
+					pplval.str = "(";
+					return L_PAREN;
+				}
+")"				{
+					pplval.str = ")";
+					return R_PAREN;
+				}
+"\n"				{
+					pplval.str = "\n";
+					return NEW_LINE;
+				}	
+				
+"["				{
+					pplval.str = "[";
+					return L_BRACKET;
+				}
+"]"				{
+					pplval.str = "]";
+					return R_BRACKET;
+				}
+[ \t]		   		;   	/* skip whitespace */
+.           	    		pperror("Unknown character");
+%%
+int ppwrap(void) {
+    return 1;
+}

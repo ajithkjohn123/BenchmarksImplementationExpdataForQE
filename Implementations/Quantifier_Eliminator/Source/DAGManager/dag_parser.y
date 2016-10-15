@@ -1,0 +1,174 @@
+%{
+#include "DagManager.h"
+#include <string>
+#include "yacc_utils.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string>
+  using namespace std;
+  int yylex(void);
+  void yyerror(char *);
+
+  
+  DAGManager dm(true, false);
+  DAGNode *root;
+%}
+
+
+
+
+
+/*This is the union used to define YYSTYPE*/
+%union{
+  char  *string_value;
+  int   int_value;
+  class DAGNode *dagnode;
+  class VectorOfExpressions *vector_of_expressions;
+
+}
+
+%type <dagnode> Symbol_Or_Literal
+%type <dagnode> Expr
+%type <vector_of_expressions> Operand_Expressions_List Expr_Vector
+
+%token <string_value> t_String
+%type <string_value> Operator
+
+
+
+
+
+%token  t_OBrack t_CBrack t_Comma t_Eq
+
+
+
+
+
+%%
+
+DAGFile : DAGExpressionsList 
+         {
+	   cout<<"Read the DAGFile successfully\n";
+	 }
+DAGExpressionsList : DAGExpressionsList  DAGExpression | ;
+
+DAGExpression : t_String t_Eq Expr
+         {
+	   cout<<"Matched t_String in DAGExperssion\n";
+	   /* LHS is the node already created in the DAG
+	      RHS is the expression of this node*/
+	   if($1 == "root")
+	     {
+	       cout<<"Found the root\n";
+	       root = $3;
+	     }
+	   else
+	     {
+	       DAGNode *node = dm.createNode($1);
+	       bool replace_result = dm.ReplaceLeafByDAG(node, $3);
+	       if(!replace_result)
+		 {
+		   cerr<<"Could not replace \n";
+		   exit(0);
+		 }
+	     }
+	   cout<<"Read an expression string successfully\n";	   
+         }
+
+
+
+/**create tokens for all operators that are to be added */
+Expr :  Operator t_OBrack Operand_Expressions_List t_CBrack
+	{
+	  VectorOfExpressions *v=$3;
+
+	  vector<DAGNode *> operands;
+	  for(int i=0;i<v->v_expressions.size();i++)
+	    {
+	      operands.push_back(v->v_expressions[i]);
+	    }
+	  DAGNode *operator_node=dm.createNode($1, operands);
+	  cout<<"Matching a Expr\n";
+	  $$=(DAGNode *)operator_node;
+	    
+	}
+        |
+       Symbol_Or_Literal
+	{
+	  cout<<"Matching a Expr\n";
+	  $$=$1;
+	}
+
+
+
+
+       /*Operand_Expressions_List is the list of (comma seperated) optional operands of an operator. Do not confuse with Expr_Vector*/
+Operand_Expressions_List : Operand_Expressions_List t_Comma Expr
+	{
+	vector<DAGNode *> v;
+        v=assign_expressions($1);
+        v.push_back($3);
+        class VectorOfExpressions *s1=new VectorOfExpressions(v);
+	cout<<"Matching a Operand_Experssion_List\n";
+        $$=s1;
+	}
+	  | 
+	Expr 
+	{
+	vector<DAGNode *> v;
+        v.push_back($1);
+	class VectorOfExpressions *s1=new VectorOfExpressions(v);
+	cout<<"Matching a Operand_Experssion_List\n";
+        $$=s1;
+	}
+
+
+
+Symbol_Or_Literal:
+        t_String
+        {
+	  cout<<"Found a symbol or literal "<<$1<<endl;
+	  DAGNode *node;
+	  node = dm.createNode($1);
+	  if(node==NULL)
+	    cout<<"ERROR !! Found a null node \n";
+	  $$ = node;
+        }
+        
+
+
+
+Expr_Vector: 
+           Expr_Vector Expr 
+	   {
+	     vector<DAGNode *> v;
+	     v=assign_expressions($1);
+	     v.push_back($2);
+	     class VectorOfExpressions *s1=new VectorOfExpressions(v);
+	     cout<<"Matching a Expr_Vector\n";
+	     $$=s1;
+	     
+	   }
+            | 
+ 	   {
+	     vector<DAGNode *> v;
+	     class VectorOfExpressions *s1=new VectorOfExpressions();
+	     cout<<"Matching a Expr_Vector\n";
+	     $$=s1;
+	     
+	   };
+
+Operator : t_String { cout<<"Matching an operator "<<$1<<endl; /*ifvalidoperator() */ $$=$1;}
+%%
+
+
+
+
+
+
+void yyerror(char *s) 
+{
+  fprintf(stderr, "%s\n", s);
+}
+
+

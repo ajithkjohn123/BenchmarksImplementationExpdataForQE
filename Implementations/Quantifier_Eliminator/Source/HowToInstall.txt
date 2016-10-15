@@ -1,0 +1,13 @@
+To build Quantifier_Eliminator, 
+
+1) Go inside DAGManager/. Do "make"
+
+2) Go inside Eliminator/. 
+   
+   Open Makefile.
+
+   The code uses cudd library. Set the variable BDD_PATH in Makefile 
+   as the path of cudd library. 
+
+   Do "make"
+ 

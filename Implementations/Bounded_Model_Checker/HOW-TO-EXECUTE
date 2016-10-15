@@ -1,0 +1,73 @@
+All the experiments reported in the paper on the 
+VHDL designs are done using the 
+executable Bounded_Model_Checker (see Core_Engine/ for 
+implementation)
+
+Dependencies : 
+--------------
+
+1) For SMT solver calls during Quantifier Elimination,  
+the solver simplifyingSTP is needed.  
+Hence please include stp in the PATH before executing 
+Bounded_Model_Checker.  
+
+2) For translating the property in bounded PSL to SMTLIB 
+format, we use a property translator named propTrans. 
+Please include propTrans in the PATH before executing 
+Bounded_Model_Checker. The implementation of propTrans used is included 
+in the folder Property_Translator/
+
+
+Steps in reproducing the experiments
+------------------------------------
+
+Let design.vhd be the name of vhdl file.
+
+To run without abstraction, 
+
+1) First generate the verification condition, i.e., 
+unrolled transition relation with negation of property 
+conjoined. To do this, execute,
+
+
+time Bounded_Model_Checker -abstraction-off -unrollings=500 -exit-after-vcgeneration property_bpsl.txt design.vhd
+
+
+This gives verification condition in verification_condition.smt
+(The time for generating the verification condition and details 
+of transition relation are outputted on the screen)
+
+2) Check satisfiability of verification_condition.smt. 
+ To do this, execute, 
+
+
+time stp -g 1800 verification_condition.smt (with word-level simplifications on) and 
+time stp -g 1800 -w verification_condition.smt (with word-level simplifications off) 
+(In some cases, we have seen that stp with simplifications on takes more time. Hence, 
+minimum of solving time with and without the word-level simplifications is taken) 
+
+
+
+To run with abstraction by QE_LMDD, 
+
+1) First generate the abstract verification condition, i.e., the 
+unrolled abstract transition relation with negation of property 
+conjoined. To do this, execute,
+
+
+time Bounded_Model_Checker -abstraction-on -unrollings=500 -exit-after-vcgeneration -quantifier-eliminator=qelmdd  property_bpsl.txt design.vhd
+
+
+This gives abstract verification condition in verification_condition.smt
+(The time for generating the abstract verification condition, details 
+of transition relation, time needed by QE_LMDD are outputted on the screen)
+
+2) Check satisfiability of verification_condition.smt, by executing, 
+
+
+time stp -g 1800 verification_condition.smt (with word-level simplifications on) and 
+time stp -g 1800 -w verification_condition.smt (with word-level simplifications off). 
+Take the minimum among the times. 
+
+
+

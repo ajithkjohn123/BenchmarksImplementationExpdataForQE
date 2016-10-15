@@ -1,0 +1,10 @@
+set terminal postscript "Helvetica" 25
+set size square
+set output "qesmtmod_vs_qesmt.eps"
+set xlabel "QE_SMT_Mod QE Time"
+set ylabel "QE_SMT QE Time"
+set logscale x
+set logscale y
+plot 'qesmtmod_vs_qesmt.txt' u ($2+1):($3+1) notitle with points pt 9 lc 1 ps 2
+replot 'line3.txt' notitle with linespoints lt -1
+quit

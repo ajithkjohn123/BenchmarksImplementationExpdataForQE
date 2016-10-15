@@ -1,0 +1,145 @@
+CC=gcc
+#CPP=g++34 #In rosewood
+CPP=g++ #In other machines
+CFLAGS=-g 
+LDFLAGS=
+
+INCLUDES=-I. -I./Include/
+
+BDD_PATH = /home/ajith/CUDD
+
+YACC=yacc
+YFLAGS=-d -v -t
+
+LEX=lex
+
+Bounded_Model_Checker: y.tab.o lex.yy.o main.o  COperand.o CEntity.o CPort.o CParser.o CAtom.o CLiteral.o CExpression.o CCondConSignAssgnStmt.o CConSignAssgnStmt.o CSelConSignAssgnStmt.o CSeqStmt.o CIfStmt.o CAssgnStmt.o CCaseStmt.o CWaitStmt.o CJunctionNode.o CProcess.o CInstance.o CPrePostProcessor.o CWhileStmt.o graph.o graph-bb.o CExprSimplifier.o readrules.o rule.o rule_matching.o incr_update.o lp_solve.o CSymbSimulator.o CDependencyGraph.o CHelper.o CDAGNode.o DAG_hash_table.o FG_hash_table.o Factor_graph_Node.o DAGManager/DagManager.o DAGManager/helping_functions.o Eliminator/DDManager.o Eliminator/DDNode.o Eliminator/Eliminator.o Eliminator/Value.o Eliminator/BitBlaster.o Eliminator/ILP_Eliminator.o Eliminator/ImplicationCacheTree.o Eliminator/DAGEliminator.o Eliminator/NewBV.o $(BDD_PATH)/cudd-2.5.0/cudd/libcudd.a $(BDD_PATH)/cudd-2.5.0/st/libst.a $(BDD_PATH)/cudd-2.5.0/util/libutil.a $(BDD_PATH)/cudd-2.5.0/mtr/libmtr.a $(BDD_PATH)/cudd-2.5.0/dddmp/libdddmp.a $(BDD_PATH)/cudd-2.5.0/epd/libepd.a
+	
+	g++ -o Bounded_Model_Checker y.tab.o lex.yy.o main.o  COperand.o CEntity.o CPort.o CParser.o CAtom.o CLiteral.o CExpression.o CCondConSignAssgnStmt.o CConSignAssgnStmt.o CSelConSignAssgnStmt.o CSeqStmt.o CIfStmt.o CAssgnStmt.o CCaseStmt.o CWaitStmt.o CJunctionNode.o CProcess.o CInstance.o CPrePostProcessor.o CWhileStmt.o graph.o graph-bb.o CExprSimplifier.o readrules.o rule.o rule_matching.o incr_update.o lp_solve.o CSymbSimulator.o CDependencyGraph.o CHelper.o CDAGNode.o DAG_hash_table.o FG_hash_table.o Factor_graph_Node.o DAGManager/DagManager.o DAGManager/helping_functions.o Eliminator/DDManager.o Eliminator/DDNode.o Eliminator/Eliminator.o Eliminator/Value.o Eliminator/BitBlaster.o Eliminator/ILP_Eliminator.o Eliminator/ImplicationCacheTree.o Eliminator/DAGEliminator.o Eliminator/NewBV.o $(BDD_PATH)/cudd-2.5.0/cudd/libcudd.a $(BDD_PATH)/cudd-2.5.0/st/libst.a $(BDD_PATH)/cudd-2.5.0/util/libutil.a $(BDD_PATH)/cudd-2.5.0/mtr/libmtr.a $(BDD_PATH)/cudd-2.5.0/dddmp/libdddmp.a $(BDD_PATH)/cudd-2.5.0/epd/libepd.a
+
+y.tab.o: y.tab.c y.tab.h
+	$(CPP) -c   $(INCLUDES) -I./DAGManager/ $(CFLAGS) y.tab.c
+
+y.tab.c y.tab.h: Src/vhdl.y
+	$(YACC) $(YFLAGS) Src/vhdl.y
+
+lex.yy.o: lex.yy.c y.tab.h
+	$(CC) -c   $(INCLUDES) $(CFLAGS) lex.yy.c
+
+lex.yy.c: Src/vhdl.lex
+	$(LEX) Src/vhdl.lex
+
+main.o: Src/main.cpp
+	$(CPP) -c  $(INCLUDES) -I./DAGManager/ -I./Eliminator/ -I$(BDD_PATH)/cudd-2.5.0/include/ $(CFLAGS) Src/main.cpp
+
+COperand.o: Src/COperand.cpp Include/COperand.h
+	$(CPP) -c  $(CFLAGS) $(INCLUDES)  -I./DAGManager/ Src/COperand.cpp
+
+CEntity.o: Src/CEntity.cpp Include/CEntity.h
+	$(CPP) -c  $(CFLAGS) $(INCLUDES)  -I./DAGManager/ Src/CEntity.cpp
+
+CPort.o: Src/CPort.cpp Include/CPort.h
+	$(CPP) -c  $(CFLAGS) $(INCLUDES)  -I./DAGManager/ Src/CPort.cpp
+
+CParser.o: Src/CParser.cpp Include/CParser.h
+	$(CPP) -c  $(CFLAGS) $(INCLUDES)  -I./DAGManager/ Src/CParser.cpp
+
+CAtom.o: Src/CAtom.cpp Include/CAtom.h
+	$(CPP) -c  $(CFLAGS) $(INCLUDES)  -I./DAGManager/ Src/CAtom.cpp
+
+CLiteral.o: Src/CLiteral.cpp Include/CLiteral.h
+	$(CPP) -c  $(CFLAGS) $(INCLUDES)  -I./DAGManager/ Src/CLiteral.cpp
+
+CExpression.o: Src/CExpression.cpp Include/CExpression.h
+	$(CPP) -c  $(CFLAGS) $(INCLUDES)  -I./DAGManager/ Src/CExpression.cpp
+
+CCondConSignAssgnStmt.o: Src/CCondConSignAssgnStmt.cpp Include/CCondConSignAssgnStmt.h
+	$(CPP) -c  $(CFLAGS) $(INCLUDES)  -I./DAGManager/ Src/CCondConSignAssgnStmt.cpp
+
+CConSignAssgnStmt.o: Src/CConSignAssgnStmt.cpp Include/CConSignAssgnStmt.h
+	$(CPP) -c  $(CFLAGS) $(INCLUDES)  -I./DAGManager/ Src/CConSignAssgnStmt.cpp
+
+CSelConSignAssgnStmt.o: Src/CSelConSignAssgnStmt.cpp Include/CSelConSignAssgnStmt.h
+	$(CPP) -c  $(CFLAGS) $(INCLUDES)  -I./DAGManager/ Src/CSelConSignAssgnStmt.cpp
+
+CSeqStmt.o: Src/CSeqStmt.cpp Include/CSeqStmt.h
+	$(CPP) -c  $(CFLAGS) $(INCLUDES)  -I./DAGManager/ Src/CSeqStmt.cpp
+
+CIfStmt.o: Src/CIfStmt.cpp Include/CIfStmt.h
+	$(CPP) -c  $(CFLAGS) $(INCLUDES)  -I./DAGManager/ Src/CIfStmt.cpp
+
+CAssgnStmt.o: Src/CAssgnStmt.cpp Include/CAssgnStmt.h
+	$(CPP) -c  $(CFLAGS) $(INCLUDES) -I./DAGManager/ Src/CAssgnStmt.cpp
+
+CCaseStmt.o: Src/CCaseStmt.cpp Include/CCaseStmt.h
+	$(CPP) -c  $(CFLAGS) $(INCLUDES) -I./DAGManager/ Src/CCaseStmt.cpp
+
+CWaitStmt.o: Src/CWaitStmt.cpp Include/CWaitStmt.h
+	$(CPP) -c  $(CFLAGS) $(INCLUDES) -I./DAGManager/ Src/CWaitStmt.cpp
+
+CProcess.o: Src/CProcess.cpp Include/CProcess.h
+	$(CPP) -c  $(CFLAGS) $(INCLUDES) -I./DAGManager/ Src/CProcess.cpp
+
+CJunctionNode.o: Src/CJunctionNode.cpp Include/CJunctionNode.h
+	$(CPP) -c  $(CFLAGS) $(INCLUDES)  -I./DAGManager/ Src/CJunctionNode.cpp
+
+CInstance.o: Src/CInstance.cpp Include/CInstance.h
+	$(CPP) -c  $(CFLAGS) $(INCLUDES)  -I./DAGManager/ Src/CInstance.cpp
+
+CPrePostProcessor.o: Src/CPrePostProcessor.cpp Include/CPrePostProcessor.h
+	$(CPP) -c  $(CFLAGS) $(INCLUDES)  -I./DAGManager/ Src/CPrePostProcessor.cpp
+
+CWhileStmt.o: Src/CWhileStmt.cpp Include/CWhileStmt.h
+	$(CPP) -c  $(CFLAGS) $(INCLUDES)  -I./DAGManager/ Src/CWhileStmt.cpp
+
+graph.o: Src/graph.cpp Include/graph.h
+	$(CPP) -c  $(CFLAGS) $(INCLUDES)  -I./DAGManager/ Src/graph.cpp
+
+graph-bb.o: Src/graph-bb.cpp Include/graph-bb.h
+	$(CPP) -c  $(CFLAGS) $(INCLUDES)  -I./DAGManager/ Src/graph-bb.cpp
+
+CExprSimplifier.o: Src/CExprSimplifier.cpp Include/CExprSimpStructure.h
+	$(CPP) -c  $(INCLUDES) $(CFLAGS) -I./DAGManager/ Src/CExprSimplifier.cpp
+
+readrules.o: Src/readrules.cpp Include/CExprSimpStructure.h
+	$(CPP) -c  $(INCLUDES) $(CFLAGS) -I./DAGManager/ Src/readrules.cpp
+
+rule.o: Src/rule.cpp Include/CExprSimpStructure.h
+	$(CPP) -c  $(INCLUDES) $(CFLAGS) -I./DAGManager/ Src/rule.cpp
+
+rule_matching.o: Src/rule_matching.cpp Include/CExprSimpStructure.h
+	$(CPP) -c  $(INCLUDES) $(CFLAGS) -I./DAGManager/ Src/rule_matching.cpp
+
+incr_update.o: Src/incr_update.cpp Include/CExprSimpStructure.h
+	$(CPP) -c  $(INCLUDES) $(CFLAGS) -I./DAGManager/ Src/incr_update.cpp
+
+lp_solve.o: Src/lp_solve.cpp Include/CExprSimpStructure.h
+	$(CPP) -c  $(INCLUDES) $(CFLAGS) -I./DAGManager/ Src/lp_solve.cpp
+
+
+CSymbSimulator.o: Src/CSymbSimulator.cpp Include/CSymbSimulator.h
+	$(CPP) -c  $(CFLAGS) $(INCLUDES)  -I./DAGManager/ -I./Eliminator/ -I$(BDD_PATH)/cudd-2.5.0/include/ Src/CSymbSimulator.cpp 
+
+CDependencyGraph.o: Src/CDependencyGraph.cpp Include/CDependencyGraph.h
+	$(CPP) -c  $(CFLAGS) $(INCLUDES)  -I./DAGManager/ -I./Eliminator/ -I$(BDD_PATH)/cudd-2.5.0/include/ Src/CDependencyGraph.cpp
+
+CHelper.o: Src/CHelper.cpp Include/CHelper.h
+	$(CPP) -c $(CFLAGS) $(INCLUDES) -I./Eliminator/ -I./DAGManager/ Src/CHelper.cpp
+
+CDAGNode.o: Src/CDAGNode.cpp Include/CDAGNode.h
+	$(CPP) -c   $(CFLAGS) $(INCLUDES)  -I./DAGManager/ Src/CDAGNode.cpp
+
+DAG_hash_table.o: Src/DAG_hash_table.cpp Include/DAG_hash_table.h
+	$(CPP) -c  $(CFLAGS) $(INCLUDES)  -I./DAGManager/ Src/DAG_hash_table.cpp
+
+FG_hash_table.o: Src/FG_hash_table.cpp Include/FG_hash_table.h
+	$(CPP) -c  $(CFLAGS) $(INCLUDES)  -I./DAGManager/ Src/FG_hash_table.cpp
+
+Factor_graph_Node.o: Src/Factor_graph_Node.cpp Include/Factor_graph_Node.h
+	$(CPP) -c  $(CFLAGS) $(INCLUDES) -I./DAGManager/ Src/Factor_graph_Node.cpp
+
+
+
+clean:
+	rm -f y.tab.o lex.yy.o main.o  COperand.o CEntity.o CPort.o CParser.o CAtom.o CLiteral.o CExpression.o CCondConSignAssgnStmt.o CConSignAssgnStmt.o CSelConSignAssgnStmt.o CSeqStmt.o CIfStmt.o CAssgnStmt.o CCaseStmt.o CWaitStmt.o CJunctionNode.o CProcess.o CInstance.o CPrePostProcessor.o CWhileStmt.o graph.o graph-bb.o CExprSimplifier.o readrules.o rule.o rule_matching.o incr_update.o lp_solve.o CSymbSimulator.o CDependencyGraph.o CHelper.o CDAGNode.o DAG_hash_table.o FG_hash_table.o Factor_graph_Node.o core y.* lex.yy.? Bounded_Model_Checker
+

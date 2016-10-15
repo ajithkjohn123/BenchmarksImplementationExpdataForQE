@@ -1,0 +1,144 @@
+All the experiments reported in the paper on the 
+SMTLIB benchmarks are done using the 
+executable Quantifier_Eliminator. 
+
+Quantifier_Eliminator reads the input SMTLIB file, 
+parses, and creates the dag for the file. If it is 
+a lindd benchmark, performs conversion to Boolean 
+combinations of LMCs. It then applies 
+the different algorithms described in the paper - 
+Project, Layer1_Blast, Layer1_OT, Layer2_OT, ProjectWithBDDBasedLayer2, 
+QE_SMT, QE_LMDD, QE_Combined, All_Path_QElim, QE_SMT_Mod, 
+Variant of QE_SMT with Layer1_Blast in place of Project, 
+Variant of QE_SMT with Layer1_OT in place of Project, 
+Variant of QE_SMT with Layer2_OT in place of Project, and 
+Variant of QE_SMT with ProjectWithBDDBasedLayer2 in place of Project, 
+and Layer1+Layer2 for preprocessing 
+depending on the command line options. 
+
+Dependencies : 
+--------------
+
+1) Quantifier_Eliminator uses the solver simplifyingSTP. 
+Hence please include stp in the PATH before executing 
+Quantifier_Eliminator.  
+
+2) To do the comparison with Omega Test, the executable for 
+Omega Test is needed. Hence please include Omega Test in the 
+PATH before executing Quantifier_Eliminator in this case.
+
+To execute with different command-line options
+----------------------------------------------
+
+I: For experiments at the level of conjunction of LMCs:
+
+Let the benchmark's name be benchmark.smt.
+
+
+1) To execute Project
+
+Quantifier_Eliminator -LMI_handling_enabled -timeout=1800 -pr benchmark.smt
+
+
+2) To execute Layer1_Blast
+
+Quantifier_Eliminator -LMI_handling_enabled -timeout=1800 -l1b benchmark.smt
+
+
+3) To execute Layer1_OT
+
+Quantifier_Eliminator -LMI_handling_enabled -timeout=1800 -l1ot benchmark.smt
+
+
+4) To execute Layer2_OT
+
+Quantifier_Eliminator -LMI_handling_enabled -timeout=1800 -l2ot benchmark.smt
+
+
+5) To execute ProjectWithBDDBasedLayer2
+
+Quantifier_Eliminator -LMI_handling_enabled -timeout=1800 -l2ub benchmark.smt
+
+
+6) To apply Layer1 and Layer2 for preprocessing SMTLIB files
+
+Quantifier_Eliminator -LMI_handling_enabled -timeout=1800 -preprocess benchmark.smt
+
+
+II: For experiments at the level of Boolean combination of LMCs:
+
+Let the benchmark's name be benchmark.smt.
+
+1) To execute QE_SMT 
+
+
+on lindd benchmarks:  Quantifier_Eliminator -LMI_handling_enabled -LIA_Input -WidthInteger=16 -timeout=1800 benchmark.smt
+
+on vhdl benchmarks: Quantifier_Eliminator -LMI_handling_enabled -timeout=1800 benchmark.smt
+
+
+2) To execute QE_LMDD
+
+on lindd benchmarks: Quantifier_Eliminator -LMI_handling_enabled -LIA_Input -WidthInteger=16 -timeout=1800 -order_lmes_before_lmis_in_normalization -dd benchmark.smt
+
+on vhdl benchmarks: Quantifier_Eliminator -LMI_handling_enabled -timeout=1800 -order_lmes_before_lmis_in_normalization -dd benchmark.smt
+
+
+3) To execute QE_Combined
+
+on lindd benchmarks:  Quantifier_Eliminator -LMI_handling_enabled -LIA_Input -WidthInteger=16 -timeout=1800  -order_lmes_before_lmis_in_normalization -convert_problem_into_disjunction_of_tailed_triangles -perform_monniaux_at_startup_in_disjunction_of_tailed_triangles -timeout_in_perform_monniaux_at_startup_in_disjunction_of_tailed_triangles=20 -dd benchmark.smt
+
+on vhdl benchmarks:  Quantifier_Eliminator -LMI_handling_enabled -timeout=1800  -order_lmes_before_lmis_in_normalization -convert_problem_into_disjunction_of_tailed_triangles -perform_monniaux_at_startup_in_disjunction_of_tailed_triangles -timeout_in_perform_monniaux_at_startup_in_disjunction_of_tailed_triangles=20 -dd benchmark.smt
+
+
+4) To execute All_Path_QElim
+
+on lindd benchmarks: Quantifier_Eliminator -LMI_handling_enabled -LIA_Input -WidthInteger=16 -timeout=1800 -order_lmes_before_lmis_in_normalization -dd -black benchmark.smt
+
+on vhdl benchmarks: Quantifier_Eliminator -LMI_handling_enabled -timeout=1800 -order_lmes_before_lmis_in_normalization -dd -black benchmark.smt
+
+
+5) To execute QE_SMT_Mod
+
+on lindd benchmarks: Quantifier_Eliminator -LMI_handling_enabled -LIA_Input -WidthInteger=16 -timeout=1800 -use_original_generalize2 benchmark.smt
+
+on vhdl benchmarks: Quantifier_Eliminator -LMI_handling_enabled -timeout=1800 -use_original_generalize2 benchmark.smt
+
+
+
+6) Variant of QE_SMT with Layer1_Blast in place of Project
+
+on lindd benchmarks:   Quantifier_Eliminator -LMI_handling_enabled -LMI_QE_using_blasting -LIA_Input -WidthInteger=16  -timeout=1800 benchmark.smt
+
+on vhdl benchmarks:   Quantifier_Eliminator -LMI_handling_enabled -LMI_QE_using_blasting -timeout=1800 benchmark.smt
+
+
+7) Variant of QE_SMT with Layer1_OT in place of Project
+
+on lindd benchmarks:   Quantifier_Eliminator -LMI_handling_enabled -LMI_QE_using_OT -LIA_Input -WidthInteger=16  -timeout=1800 benchmark.smt
+
+on vhdl benchmarks:   Quantifier_Eliminator -LMI_handling_enabled -LMI_QE_using_OT -timeout=1800 benchmark.smt
+
+
+8) Variant of QE_SMT with Layer2_OT in place of Project
+
+on lindd benchmarks:   Quantifier_Eliminator -LMI_handling_enabled -LMI_QE_using_OT -apply_OT_after_layer2 -LIA_Input -WidthInteger=16  -timeout=1800 benchmark.smt
+
+on vhdl benchmarks:   Quantifier_Eliminator -LMI_handling_enabled -LMI_QE_using_OT -apply_OT_after_layer2 -timeout=1800 benchmark.smt
+
+
+9) Variant of QE_SMT with ProjectUsingLMDDs in place of Project
+
+on lindd benchmarks:   Quantifier_Eliminator -LMI_handling_enabled -layer2_check_using_bdds -LIA_Input -WidthInteger=16 -timeout=1800 benchmark.smt
+
+on vhdl benchmarks:   Quantifier_Eliminator -LMI_handling_enabled -layer2_check_using_bdds -timeout=1800 benchmark.smt
+
+
+After quantifier elimination, the results are appended in files 
+LMIQEDagData.txt, LMIQEImportantDataFourierMotzkin.txt, 
+LMIQEImportantDataBlasting.txt, LMIQEImportantDataOT.txt,
+LMIQEImportantDataOTAfterLayer2.txt, and 
+CumulativeTimeLayer2Checks.txt (templates of these files are in 
+TemplatesOfLogFiles/)
+
+

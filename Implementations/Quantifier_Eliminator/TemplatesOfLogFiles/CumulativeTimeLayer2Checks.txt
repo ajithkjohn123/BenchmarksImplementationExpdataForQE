@@ -1,0 +1,9 @@
+column 1 = Input File Name
+column 2 = Elimination type (-mn for QE_SMT)
+column 3 = Type of Layer2 check (heuristic/BDDs)
+column 4 = Total time for blasting
+column 5 = Total time for BDD creation
+column 6 = Total time for QE from BDDs
+column 7 = Width of integer for lindd benchmarks
+column 8 = Total number of Layer2 checks
+

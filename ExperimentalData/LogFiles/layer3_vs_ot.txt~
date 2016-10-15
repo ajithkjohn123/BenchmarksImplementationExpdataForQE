@@ -1,0 +1,55 @@
+column 1 = Benchmark name
+column 2 = Average Time inside Layer3 in Project (In milliseconds)
+column 3 = Average Time inside Omega-test in Layer2_Blast (In milliseconds)
+
+
+DeltaTR_OUT_CONTROL.smt	62	152
+DeltaTR_RFRNC_OUT.smt	1	20
+i_Cudd_bddLeqUnless.smt	390	1800000
+i_Mtr_MakeGroup.smt	17017	1800000
+i_SetValues1279.smt	48	1800000
+i___gmpf_add_ui.smt	82052	1800000
+i_action_movePage.smt	76	21
+i_action_panner.smt	2249	1800000
+i_bash_forward_shellword.smt	271	1800000
+i_cb_scroll.smt	155665	1800000
+i_check_idleness.smt	14	24
+i_config_insert.smt	36	26
+i_control681.smt	583266	1800000
+i_control852.smt	669	1800000
+i_cuddAddIteRecur.smt	3	33
+i_curs_set.smt	101	22
+i_ddGroupSiftingAux.smt	3	27
+i_decApplyRound.smt	2337	1800000
+i_decNaNs.smt	104	1800000
+i_demux_seek_mpg.smt	30	47
+i_dvd_encode_rle.smt	1194	1800000
+i_encode_422_bitstream.smt	115	1800000
+i_ff_er_add_slice.smt	120100	1800000
+i_ff_jpegls_reset_coding_parameters.smt	102689	1800000
+i_ff_mspel_motion.smt	8984	1800000
+i_foreach_dirinpath.smt	20	23
+i_get_be24.smt	2	38
+i_get_le24.smt	2	39
+i_gnt_widget_set_size.smt	516	1800000
+i_h263_pred_motion.smt	9476	1800000
+i_ic_prediction.smt	213	1800000
+i_modify_qscale.smt	108	1800000
+i_mpeg4_encode_visual_object_header.smt	76474	1800000
+i_muscle_insert_base_table.smt	33	23
+i_muscle_insert_int_table.smt	32	23
+i_muscle_insert_symbol_number_table.smt	32	23
+i_muscle_insert_unsigned_int_table.smt	36	23
+i_ogg_stream_pagein.smt	113	1800000
+i_open18846.smt	206	1800000
+i_pfork.smt	1	31
+i_read_segment.smt	2530	1800000
+i_reposition_children.smt	134	31
+i_rl_delete.smt	514	1800000
+i_rl_forward_byte.smt	44	1800000
+i_rl_vi_match.smt	6	1800000
+i_rv34_pred_mv.smt	877	1800000
+i_string_extract.smt	1432	1800000
+i_unlzh.smt	165	1800000
+i_url_fseek.smt	44	22
+

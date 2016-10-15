@@ -1,0 +1,160 @@
+CC=gcc
+CPP=g++
+# CFLAGS=-gx -DBASE_REPRESENTATION
+CFLAGS=-g 
+LDFLAGS=
+
+INCLUDES=-I. -I./Include/
+
+YACC=yacc
+YFLAGS=-d -v -t
+
+LEX=lex
+
+OBJS=y.tab.o lex.yy.o main.o  COperand.o CEntity.o CPort.o CParser.o CAtom.o CLiteral.o CExpression.o CCondConSignAssgnStmt.o CConSignAssgnStmt.o CSelConSignAssgnStmt.o CSeqStmt.o CIfStmt.o CAssgnStmt.o CCaseStmt.o CWaitStmt.o CJunctionNode.o CProcess.o CInstance.o CPrePostProcessor.o CWhileStmt.o graph.o graph-bb.o CExprSimplifier.o readrules.o rule.o rule_matching.o incr_update.o lp_solve.o CSymbSimulator.o CDependencyGraph.o CHelper.o CDAGNode.o DAG_hash_table.o FG_hash_table.o Factor_graph_Node.o DDManager.o DD_hash_table.o DDNode.o Eliminator.o
+
+all: SymbolicSimulator_With_Expression_Manager
+
+SymbolicSimulator_With_Expression_Manager: $(OBJS)
+	$(CPP) -o SymbolicSimulator_With_Expression_Manager $(CFLAGS) $(OBJS) $(LDFLAGS) 
+
+y.tab.o: y.tab.c y.tab.h
+	$(CPP) -c   $(INCLUDES) $(CFLAGS) y.tab.c
+
+y.tab.c y.tab.h: Src/vhdl.y
+	$(YACC) $(YFLAGS) Src/vhdl.y
+
+lex.yy.o: lex.yy.c y.tab.h
+	$(CC) -c   $(INCLUDES) $(CFLAGS) lex.yy.c
+
+lex.yy.c: Src/vhdl.lex
+	$(LEX) Src/vhdl.lex
+
+main.o: Src/main.cpp
+	$(CPP) -c  $(INCLUDES) $(CFLAGS) Src/main.cpp
+
+COperand.o: Src/COperand.cpp Include/COperand.h
+	$(CPP) -c  $(CFLAGS) $(INCLUDES)  Src/COperand.cpp
+
+#CIdentifier.o: Src/CIdentifier.cpp Include/CIdentifier.h
+#	$(CPP) -c  $(CFLAGS) $(INCLUDES)  Src/CIdentifier.cpp
+
+CEntity.o: Src/CEntity.cpp Include/CEntity.h
+	$(CPP) -c  $(CFLAGS) $(INCLUDES)  Src/CEntity.cpp
+
+CPort.o: Src/CPort.cpp Include/CPort.h
+	$(CPP) -c  $(CFLAGS) $(INCLUDES)  Src/CPort.cpp
+
+CParser.o: Src/CParser.cpp Include/CParser.h
+	$(CPP) -c  $(CFLAGS) $(INCLUDES)  Src/CParser.cpp
+
+CAtom.o: Src/CAtom.cpp Include/CAtom.h
+	$(CPP) -c  $(CFLAGS) $(INCLUDES)  Src/CAtom.cpp
+
+CLiteral.o: Src/CLiteral.cpp Include/CLiteral.h
+	$(CPP) -c  $(CFLAGS) $(INCLUDES)  Src/CLiteral.cpp
+
+CExpression.o: Src/CExpression.cpp Include/CExpression.h
+	$(CPP) -c  $(CFLAGS) $(INCLUDES)  Src/CExpression.cpp
+
+CCondConSignAssgnStmt.o: Src/CCondConSignAssgnStmt.cpp Include/CCondConSignAssgnStmt.h
+	$(CPP) -c  $(CFLAGS) $(INCLUDES)  Src/CCondConSignAssgnStmt.cpp
+
+CConSignAssgnStmt.o: Src/CConSignAssgnStmt.cpp Include/CConSignAssgnStmt.h
+	$(CPP) -c  $(CFLAGS) $(INCLUDES)  Src/CConSignAssgnStmt.cpp
+
+CSelConSignAssgnStmt.o: Src/CSelConSignAssgnStmt.cpp Include/CSelConSignAssgnStmt.h
+	$(CPP) -c  $(CFLAGS) $(INCLUDES)  Src/CSelConSignAssgnStmt.cpp
+
+CSeqStmt.o: Src/CSeqStmt.cpp Include/CSeqStmt.h
+	$(CPP) -c  $(CFLAGS) $(INCLUDES)  Src/CSeqStmt.cpp
+
+CIfStmt.o: Src/CIfStmt.cpp Include/CIfStmt.h
+	$(CPP) -c  $(CFLAGS) $(INCLUDES)  Src/CIfStmt.cpp
+
+CAssgnStmt.o: Src/CAssgnStmt.cpp Include/CAssgnStmt.h
+	$(CPP) -c  $(CFLAGS) $(INCLUDES)  Src/CAssgnStmt.cpp
+
+CCaseStmt.o: Src/CCaseStmt.cpp Include/CCaseStmt.h
+	$(CPP) -c  $(CFLAGS) $(INCLUDES)  Src/CCaseStmt.cpp
+
+CWaitStmt.o: Src/CWaitStmt.cpp Include/CWaitStmt.h
+	$(CPP) -c  $(CFLAGS) $(INCLUDES)  Src/CWaitStmt.cpp
+
+CProcess.o: Src/CProcess.cpp Include/CProcess.h
+	$(CPP) -c  $(CFLAGS) $(INCLUDES)  Src/CProcess.cpp
+
+CJunctionNode.o: Src/CJunctionNode.cpp Include/CJunctionNode.h
+	$(CPP) -c  $(CFLAGS) $(INCLUDES)  Src/CJunctionNode.cpp
+
+CInstance.o: Src/CInstance.cpp Include/CInstance.h
+	$(CPP) -c  $(CFLAGS) $(INCLUDES)  Src/CInstance.cpp
+
+CPrePostProcessor.o: Src/CPrePostProcessor.cpp Include/CPrePostProcessor.h
+	$(CPP) -c  $(CFLAGS) $(INCLUDES)  Src/CPrePostProcessor.cpp
+
+CWhileStmt.o: Src/CWhileStmt.cpp Include/CWhileStmt.h
+	$(CPP) -c  $(CFLAGS) $(INCLUDES)  Src/CWhileStmt.cpp
+
+graph.o: Src/graph.cpp Include/graph.h
+	$(CPP) -c  $(CFLAGS) $(INCLUDES)  Src/graph.cpp
+
+graph-bb.o: Src/graph-bb.cpp Include/graph-bb.h
+	$(CPP) -c  $(CFLAGS) $(INCLUDES)  Src/graph-bb.cpp
+
+CExprSimplifier.o: Src/CExprSimplifier.cpp Include/CExprSimpStructure.h
+	$(CPP) -c  $(INCLUDES) $(CFLAGS) Src/CExprSimplifier.cpp
+
+readrules.o: Src/readrules.cpp Include/CExprSimpStructure.h
+	$(CPP) -c  $(INCLUDES) $(CFLAGS) Src/readrules.cpp
+
+rule.o: Src/rule.cpp Include/CExprSimpStructure.h
+	$(CPP) -c  $(INCLUDES) $(CFLAGS) Src/rule.cpp
+
+rule_matching.o: Src/rule_matching.cpp Include/CExprSimpStructure.h
+	$(CPP) -c  $(INCLUDES) $(CFLAGS) Src/rule_matching.cpp
+
+incr_update.o: Src/incr_update.cpp Include/CExprSimpStructure.h
+	$(CPP) -c  $(INCLUDES) $(CFLAGS) Src/incr_update.cpp
+
+lp_solve.o: Src/lp_solve.cpp Include/CExprSimpStructure.h
+	$(CPP) -c  $(INCLUDES) $(CFLAGS) Src/lp_solve.cpp
+
+
+CSymbSimulator.o: Src/CSymbSimulator.cpp Include/CSymbSimulator.h
+	$(CPP) -c  $(CFLAGS) $(INCLUDES)  Src/CSymbSimulator.cpp
+
+CDependencyGraph.o: Src/CDependencyGraph.cpp Include/CDependencyGraph.h
+	$(CPP) -c  $(CFLAGS) $(INCLUDES)  Src/CDependencyGraph.cpp
+
+CHelper.o: Src/CHelper.cpp Include/CHelper.h
+	$(CPP) -c $(CFLAGS) $(INCLUDES)  Src/CHelper.cpp
+
+CDAGNode.o: Src/CDAGNode.cpp Include/CDAGNode.h
+	$(CPP) -c  $(CFLAGS) $(INCLUDES)  Src/CDAGNode.cpp
+
+DAG_hash_table.o: Src/DAG_hash_table.cpp Include/DAG_hash_table.h
+	$(CPP) -c  $(CFLAGS) $(INCLUDES)  Src/DAG_hash_table.cpp
+
+FG_hash_table.o: Src/FG_hash_table.cpp Include/FG_hash_table.h
+	$(CPP) -c  $(CFLAGS) $(INCLUDES)  Src/FG_hash_table.cpp
+
+Factor_graph_Node.o: Src/Factor_graph_Node.cpp Include/Factor_graph_Node.h
+	$(CPP) -c  $(CFLAGS) $(INCLUDES)  Src/Factor_graph_Node.cpp
+
+DDManager.o: Src/DDManager.cpp Include/DDManager.h Include/HashTable_WithStandardKeys.h
+	$(CPP) -c  $(CFLAGS) $(INCLUDES)  Src/DDManager.cpp -I Include
+
+DD_hash_table.o: Src/DD_hash_table.cpp Include/DD_hash_table.h
+	$(CPP) -c  $(CFLAGS) $(INCLUDES)  Src/DD_hash_table.cpp
+
+DDNode.o: Src/DDNode.cpp Include/DDNode.h
+	$(CPP) -c  $(CFLAGS) $(INCLUDES)  Src/DDNode.cpp
+
+Eliminator.o: Src/Eliminator.cpp Include/Eliminator.h
+	$(CPP) -c $(CFLAGS) $(INCLUDES)  Src/Eliminator.cpp
+
+
+clean:
+	rm -f $(OBJS) core y.* lex.yy.? SymbolicSimulator_With_Expression_Manager
+

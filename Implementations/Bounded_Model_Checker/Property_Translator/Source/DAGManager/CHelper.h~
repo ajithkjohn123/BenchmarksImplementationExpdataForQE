@@ -1,0 +1,249 @@
+/* 
+ * File:   CHelper.h
+ * Author: sourabh
+ *
+ * Created on 26 May, 2009, 3:38 PM
+ */
+
+#ifndef _CHELPER_H
+#define	_CHELPER_H
+
+    #include <string>
+    #include <iostream>
+    #include "DAG_hash_table.h"
+    #include "Factor_graph_Node.h"
+    #include "FG_hash_table.h"
+    #include "CDAGNode.h"
+
+    #include "HashTable_WithStandardKeys.h"   
+    
+    #include <fstream>
+    #include <list>
+    #include <set>
+    #include <algorithm>
+
+    #include "CExprSimpStructure.h" // newly added for expression simplification
+
+
+    using namespace std;
+
+    class CHelper
+    {
+        public:
+            CHelper();
+            
+            CDAGNode* createDAG(string);   //to create constant values like '1' and '0'
+            CDAGNode* createDAG(string , int);   //to create operand variables.....
+            CDAGNode* createDAG(string , CDAGNode* );   //to create unary operators....
+             CDAGNode* createDAG(string , CDAGNode* , CDAGNode*);   //to create binary operators....
+             CDAGNode* createDAG(string , CDAGNode* , CDAGNode*, CDAGNode*);
+            //to create ternary operators......
+             CDAGNode* createDAG(string , CDAGNode* , string , string) ;
+             CDAGNode* createDAG(string , CDAGNode* , int , int) ;
+            //for special operators like select(a , 3, 5)......
+	     CDAGNode* createDAG(string, int, int, int);
+
+            CDAGNode* cloneAndShift(CDAGNode* , int );
+            //Given a dag, create a copy of the dag with delta time of the nodes = delta time
+            //of the nodes in the input dag + shift. Shift is provided as a parameter
+            //IMPORTANT ASUMPTION:: the function caller does not pass a NULL pointer as a parameter
+
+            CDAGNode* cloneAndReplace(CDAGNode* , map < CDAGNode* , CDAGNode* > );
+            //Given a dag, create a copy of the dag with the DAG names replaced by new variables(i.e. pointers to the variable nodes)
+            //provided in the map.
+            //IMPORTANT ASUMPTION:: the function caller does not pass a NULL pointer as a parameter
+
+            CDAGNode* Global_Inlining(CDAGNode*);
+            CDAGNode* Global_Scope_reduction(CDAGNode* );
+
+            //unsigned long HT_size();
+
+            CDAGNode* Actual_scope_reduction(void);
+             
+             CDAGNode* Inlining(CDAGNode* , set<string>& ) ;
+             CDAGNode* Scope_reduction(CDAGNode* , set<string>& );
+	     
+	     void printGraphInDotFormat(CDAGNode* me, string FileName);
+	     void create_node(fstream &file_op, CDAGNode* me, set<CDAGNode*> &Nodes);
+
+
+             Factor_graph_Node* createFG_var_node(CDAGNode*);
+             Factor_graph_Node* createFG_func_node(CDAGNode*);
+
+             void Get_functions_for_sum_product_algo_from_a_DAG(CDAGNode*, list<CDAGNode*>&, list<CDAGNode*>&);
+             void Get_vars_of_func_and_form_var_nodes(CDAGNode* , CDAGNode* , set<CDAGNode*>& );
+             void form_factor_graph(CDAGNode* );
+	     
+	     CDAGNode* equivalentReduction(CDAGNode* root);
+	     
+	     
+	     // ADDED BY AJITH FROM 21/12/2009 ONWARDS
+	     
+	     CDAGNode* cloneWithRename(CDAGNode* parent, map<string, string> RenameMap);
+	     CDAGNode* unrollTransitionRelation(CDAGNode* root, int times);
+	     CDAGNode* findMinDeltaDelay(CDAGNode* root, int &MinDeltaDelay);
+	     CDAGNode* findMaxDeltaDelay(CDAGNode* root, string signal, int &MaxDeltaDelay);
+	     CDAGNode* cloneWithDeltasAtLimit(CDAGNode* parent, int low, int high, set<string> names);
+	     
+
+	     // ADDED BY AJITH FROM 29/12/2009 ONWARDS FOR INTEGRATION WITH QELIM
+
+	     CDAGNode* convertEquationToProperForm(CDAGNode* root);
+	     CDAGNode* getCloneOfEquationInProperForm(CDAGNode* lhs, CDAGNode* rhs);
+	     //CDAGNode* getLinearizedClone(CDAGNode* parent, map<CDAGNode*, CDAGNode*> &LinearizationTable, int &count, map<string, int> &WidthTable, set<string> VarsToElimOriginal, set<string> &VarsToElimRenamed);
+	     CDAGNode* getLinearizedClone(CDAGNode* parent, map<CDAGNode*, CDAGNode*> &LinearizationTable, int &count, map<string, int> &WidthTable, set<string> &VarsToElimOriginal, set<string> &VarsToElimRenamed);
+	     CDAGNode* getPreprocessedClone(CDAGNode* parent);
+	     CDAGNode* getOriginalClone(CDAGNode* parent, map<CDAGNode*, CDAGNode*> LinearizationTable);
+	     map<CDAGNode*, CDAGNode*>::iterator findInLinearizationTable(map<CDAGNode*, CDAGNode*> &LinearizationTable, string id_delta);
+	     CDAGNode* cloneWithReplaceVariablesModified(CDAGNode* parent, map<string, int> MaxDeltaMap, int &count, map<CDAGNode*,CDAGNode*> &DPTable, map<string, string> &ReplacedVarsMap);
+	     bool NewDeltaCheck(string value, int dtime, set<int> DeltasIncluded, set<string> output_inter_id_names);
+	     void getNewDeltasModified(CDAGNode* root, set<string> signals, set<int> DeltasIncluded, set<int> &NewDeltas);
+
+
+	     // ON 5/12/10 FOR INTEGRATING WITH EXP. SIMPLIFIER
+
+	     CExprSimpNode* convertTreeToDAG(CDAGNode *tree, map<CDAGNode*, CExprSimpNode*> &DPTable);
+	     CExprSimpNode* convertCDAGNodeToCExprSimpNode(CDAGNode *tree);
+	     CDAGNode* convertCExprSimpNodeToCDAGNode(CExprSimpNode *dag);
+	    
+	     
+	     // FNS FOR CHECKING EXACTNESS : 5/1/10
+
+	      bool checkForExactness(CDAGNode* original, CDAGNode* eliminated, map<string, int> WidthTable, list<string> VarsToElim);
+	      void writeBVDeclarationsFromWidthTableInYicesFormat(FILE *smt_file, map<string, int> WidthTable);
+	      bool checkUnast(CDAGNode* formula, map<string, int> WidthTable);
+	      string convertDecimalToBitvector(int number);
+	      string integerToBinaryString(int i);
+	      CDAGNode* replaceVarsByValues(CDAGNode *original, map<string, string> ValueMap);
+	      int findPower(int number);
+	      void showSet(set<string> me, string WhoAmI);
+	      bool foundInValuesConsidered(list< vector<int> > ValuesConsidered, vector<int> NewValues);
+	      bool matchingVectors(vector<int> V1, vector<int> V2);
+	      void showMap(map<string, string> me, string WhoAmI);
+	      void showVector(vector<int> MyVector, string WhoAmI);
+	      void showListOfVectors(list< vector<int> >  MySet, string WhoAmI);
+	      void createWidthTableForOperators(CDAGNode *tree, map<CDAGNode*, int> &WidthTableForNodes, map<string, int> WidthTable);
+	      string callgetDAGOfProperSkeltonFormatInYicesFormatWithWidthTable(CDAGNode *root, map<string, int> WidthTable);
+	      int findMaximum(int i, int j); 
+
+	      int findUnneededSelections(CDAGNode *tree, set<CDAGNode*> &UnneededSelects, bool InsideSelection, map<string, int> WidthTable);
+	      CDAGNode* getSelectionsRemovedClone(CDAGNode* parent, set<CDAGNode*> UnneededSelects);
+	      
+	     
+	      int findMinimumWidthRequired(string Number);
+	      int findMinimumWidthRequiredForNumber(ULINT number);
+	      void propogateWidths(CDAGNode *tree, map<CDAGNode*, int> &WidthTableForNodes, int WidthFromParent);
+
+
+	      void checkForPropSkelton(CDAGNode* parent);
+	      bool Logical(string MyName);
+	      bool LogicalOperator(string MyName);
+
+
+	      // FUNCTIONS FOR CONVERTING SUB NODES TO ADD NODES ON 20/1/2010
+	      
+	      CDAGNode* getSubtractionReplacedClone(CDAGNode* parent, map<CDAGNode*, CDAGNode*> &SubtractionTable, map<string, int> WidthTable);
+	      void copySetToList(set<string> MySet, list<string> &MyList);
+	      CDAGNode* recreateSubtractionDAG(CDAGNode* parent, map<string, int> WidthTable);
+	      CDAGNode* getDAGFromVarsCoefsAndConstant(list<string> Vars, list<ULINT> Coefs, ULINT SelectedConst);
+	      void convertMinusToAIs(list<ULINT> Coefs, list<ULINT> &NewCoefs, ULINT Mod);
+	      ULINT additiveInverse(ULINT number, ULINT mod);
+
+
+	      void callgetDAGOfProperSkeltonFormatInYicesFormatWithWidthTableToFile(CDAGNode *root, map<string, int> WidthTable, FILE *yices_fp);
+	      CDAGNode* callCloneAndShiftWithDP(CDAGNode* parent, int shift);
+	      CDAGNode* cloneAndShiftWithDP(CDAGNode* parent, int shift, map<CDAGNode*, CDAGNode*> *PtrDPTable);
+	      
+	      void UnrollTR_and_Print_in_Yices_Format(CDAGNode *root, map<string, int> WidthTable, FILE *yices_fp, int times, string property);
+
+
+	      void getAPsForDAGInPropSkelton(CDAGNode* parent, set<CDAGNode*> &APTable);
+	      
+	      int findUnneededSelectionsModified(CDAGNode *tree, set<CDAGNode*> &UnneededSelects, bool InsideSelection, map<string, int> WidthTable, bool InsideFirstArgOfSelect);
+
+	      
+	      void writeBVDeclarationsFromWidthTableInSMTLibFormat(FILE *smt_file, map<string, int> WidthTable);
+	      string callgetDAGOfProperSkeltonFormatInSMTLibFormatWithWidthTable(CDAGNode *root, map<string, int> WidthTable, set<string> &VarsToElimSet);
+	      string checkImplicationInCVC(CDAGNode *original, CDAGNode *eliminated, map<string, int> WidthTable, list<string> VarsToElim);
+	      CDAGNode* cloneWithDeltaToggled(CDAGNode* parent);
+	      void createSetFromList(set<string> &VarsToElimSet, list<string> VarsToElim);
+	      void getDeltaToggledSet(set<string> VarsToElimSet, set<string> &VarsToElimSetToggled);
+	      string  getExistsString(set<string> VarsToElimSetToggled, map<string, int> WidthTable);
+
+	      void printQEliminatorResultsInFile(CDAGNode *original, map<string, int> WidthTable, list<string> VarsToElim, time_t qelimtime);
+	     
+	      string callgetDAGOfProperSkeltonFormatInNewSMTLibFormatWithWidthTable(CDAGNode *root, map<string, int> WidthTable);  
+
+
+
+
+	      void conjunctiveDecomposition(set<CDAGNode*> &Relations, CDAGNode *root);
+	      CDAGNode* convertRelationToFunction(CDAGNode *root);
+	      //void convertToFunctionalForm(CDAGNode* root);
+	      void getDepMapFinal(CDAGNode* root, map<string, set<string> > &DepMapFinal);
+	      void getFixPoint(map<string, set<string> > &DepMap, set<string> &State, set<string> &FixPoint);
+	      void getImage(map<string, set<string> > &DepMap, set<string> &FixPoint, set<string> &NewState);
+	      bool setsEqual(set<string> &FixPoint, set<string> &NewFixPoint);
+	      void createFunctionMap(CDAGNode* root, map<string, CDAGNode*> &FunctionMap);
+	      CDAGNode* cloneWithClockBasedSimplification(CDAGNode* parent);
+	      CDAGNode* cloneWithTrivialDisequationsEliminated(CDAGNode* parent);
+	      CDAGNode* cloneWithTrivialEquationsEliminated(CDAGNode* parent);
+	      CDAGNode* quickSimplifyInternal(CDAGNode *node, map<string, string> &Values, HashTable<string, CDAGNode*> *DPTable);
+	      CDAGNode* quickSimplify(CDAGNode *node, map<string, string> &Values, HashTable<string, CDAGNode*> *PtrHTable);
+	      CDAGNode* callQuickSimplify(CDAGNode *node, map<string, string> &Values);
+	      
+	      void propogateWidthsWithDP(CDAGNode *tree, map<CDAGNode*, int> &WidthTableForNodes, int WidthFromParent, set<CDAGNode*> &DPTable);
+	      void createWidthTableForOperatorsWithDP(CDAGNode *tree, map<CDAGNode*, int> &WidthTableForNodes, map<string, int> &WidthTable);
+	      //string callgetDAGOfProperSkeltonFormatInYicesFormatWithWidthTableWithDP(CDAGNode *root, map<string, int> WidthTable);
+	      string callgetDAGOfProperSkeltonFormatInYicesFormatWithWidthTableWithDP(CDAGNode *root, map<string, int> WidthTable, int &TempCount, FILE *fp, map<CDAGNode*, string> &LabelTable);
+
+	      string getDAGOfProperSkeltonFormatInYicesFormatWithWidthTableWithDP(CDAGNode *node, string context, map<CDAGNode*, int> &WidthTableForNodes, int Width_Required, HashTable<string, string> *DPTable);
+
+	      string printInYicesFormat(CDAGNode *node, string context, map<CDAGNode*, int> &WidthTableForNodes, int Width_Required, map<CDAGNode*, string> &LabelTable, FILE *fp, map<string, int> &WidthTable, int &TempCount);
+
+	      string setTypes(CDAGNode *tree, string context, map<CDAGNode*, string> &TypeTableOfITENodes);
+	      string printInYicesFormatModified(CDAGNode *node, string context, map<CDAGNode*, int> &WidthTableForNodes, int Width_Required, map<CDAGNode*, string> &LabelTable, FILE *fp, map<string, int> &WidthTable, int &TempCount, map<CDAGNode*, string> &TypeTableOfITENodes);
+
+
+	// ADDED BY Nikhil Saxena FROM 16/06/2010 ONWARDS
+		CDAGNode* unrolledClone(CDAGNode*,map<CDAGNode*, CDAGNode*> *PtrDPTable);
+		CDAGNode* callUnrolledClone(CDAGNode*);
+		CDAGNode* cloneFromPSLToSEL(CDAGNode* parent,map<CDAGNode*, CDAGNode*> *PtrDPTable);
+		CDAGNode* callCloneFromPSLToSEL(CDAGNode* parent);
+		void writeBVDeclarationsFromDAGInSMTLibFormat(FILE *smt_file, CDAGNode *dag, map<string, int> &WidthTable);
+
+           
+          private:
+
+	     // commented on 28/1/2010 as there was a problem in Sourabh's hashing scheme. Ashutosh's hashing scheme is used  
+	     //DAG_hash_table HT;
+	     HashTable <string, CDAGNode*> DAG_HT; // ON 28/1/2010, New HT implementation from Ashutosh
+
+             FG_hash_table FG_HT;
+
+             //void garbage_collector();
+
+             //functions related to inlining.....
+             CDAGNode* convertIteToFunction(CDAGNode*) ;
+             
+             void find_and_save_expressions_for_exQuant_vars( CDAGNode* , set<string>&,
+                                                              map < CDAGNode* , list <CDAGNode*> >& );
+             void find_smallest_expr_for_exQuant_vars( map < CDAGNode* , list <CDAGNode*> >&);
+             CDAGNode* Actual_inlining_substitution(CDAGNode* , map < CDAGNode* , list <CDAGNode*> >& );
+
+             void find_and_store_ex_quant_from_global_DAG(CDAGNode*, map < CDAGNode* , set<string> >&, list <CDAGNode*>& );
+             void assimilate_all_exQuant_vars_from_a_comma(CDAGNode*, set<string>&);
+             CDAGNode* Actual_Global_Inlining(  CDAGNode*                           ,
+                                                map < CDAGNode* , set<string> >&    ,
+                                                list <CDAGNode*>&                   );
+             CDAGNode* Actual_Global_Scope_reduction(   CDAGNode*                          ,
+                                                        map < CDAGNode* , set<string> >&   ,
+                                                        list <CDAGNode*>&                  );
+             CDAGNode* Get_quantified_var_list_after_single_inlining(CDAGNode*, set<string>&);
+             CDAGNode* Merge_FG_nodes(Factor_graph_Node* );
+             void Delete_a_var_from_FG(Factor_graph_Node* , Factor_graph_Node* );
+		     
+    };
+
+#endif	/* _CHELPER_H */
+

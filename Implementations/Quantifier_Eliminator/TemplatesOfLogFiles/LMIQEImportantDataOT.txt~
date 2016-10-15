@@ -1,0 +1,14 @@
+column 1 = Input File Name
+column 2 = Original Conjunction Number
+column 3 = Number of LMIs in the conjunction
+column 4 = Number of LMEs in the conjunction
+column 5 = Number of LMDs in the conjunction
+column 6 = Number of variables in the conjunction
+column 7 = Number of variables to eliminate in the conjunction
+column 8 = Number of bits in the conjunction
+column 9 = Number of bits to eliminate in the conjunction
+column 10 = Number of variables to eliminate in the input to Conversion to ILA + Omega Test
+column 11 = Time spent by Layer 1 (milliseconds)
+column 12 = Time spent by Conversion to ILA + Omega Test (milliseconds)
+
+

@@ -1,0 +1,6 @@
+To build propTrans, 
+
+1) Go inside DAGManager/. Do "make"
+
+2) Go inside Src/. Do "make"
+ 

@@ -1,0 +1,11 @@
+Contents
+------------
+
+This folder contains the log files for 
+experiments done and scripts for generating 
+plots using these log files. 
+
+Folder LogFiles/ contains the log files. 
+
+Folder ScriptFiles/ contains scripts for 
+generating plots using these log files. 
