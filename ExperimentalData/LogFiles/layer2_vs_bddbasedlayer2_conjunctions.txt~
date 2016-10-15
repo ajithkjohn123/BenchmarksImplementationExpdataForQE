@@ -1,3 +1,7 @@
+column 1 = Benchmark name
+column 2 = Total Time inside BddBasedLayer2 in ProjectWithBDDBasedLayer2 (In milliseconds)
+column 3 = Total Time inside Layer2 in Project (In milliseconds)
+
 DeltaTR_OUT_CONTROL_QESMT_benchmark_conjunction_136.smt	6	10	
 DeltaTR_OUT_CONTROL_QESMT_benchmark_conjunction_220.smt	7	10	
 DeltaTR_RFRNC_OUT_QESMT_benchmark_conjunction_38.smt	3	12	
@@ -18,8 +22,7 @@ i_Cudd_bddLeqUnless_QESMT_benchmark_conjunction_12.smt	27	86238
 i_Cudd_bddLeqUnless_QESMT_benchmark_conjunction_13.smt	28	86281	
 i_Cudd_bddLeqUnless_QESMT_benchmark_conjunction_14.smt	29	101111	
 i_Cudd_bddLeqUnless_QESMT_benchmark_conjunction_15.smt	27	86858	
-i_Cudd_bddLeqUnless_QESMT_benchmark_conjunction_16.smt	28	89776	
-i_Cudd_bddLeqUnless_QESMT_benchmark_conjunction_17.smt	28	96871	
+i_Cudd_bddLeqUnless_QESMT_benchmark_conjunction_16.smt	28	89776
 i_Cudd_bddLeqUnless_QESMT_benchmark_conjunction_18.smt	25	25599	
 i_Cudd_bddLeqUnless_QESMT_benchmark_conjunction_19.smt	28	90577	
 i_Mtr_MakeGroup_QESMT_benchmark_conjunction_1.smt	27	1800000	

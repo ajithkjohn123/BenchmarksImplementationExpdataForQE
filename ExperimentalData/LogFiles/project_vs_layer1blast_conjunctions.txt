@@ -1,3 +1,7 @@
+column 1 = Benchmark name
+column 2 = Time in Project (In milliseconds)
+column 3 = Time in Layer1_Blast (In milliseconds)
+
 DeltaTR_CP_RP_DIFF_QESMT_benchmark_conjunction_1.smt	10	6	
 DeltaTR_CP_RP_DIFF_QESMT_benchmark_conjunction_10.smt	21	31	
 DeltaTR_CP_RP_DIFF_QESMT_benchmark_conjunction_11.smt	22	26	

@@ -14,8 +14,8 @@ Bounded_Model_Checker.
 2) For translating the property in bounded PSL to SMTLIB 
 format, we use a property translator named propTrans. 
 Please include propTrans in the PATH before executing 
-Bounded_Model_Checker. The implementation of propTrans used is included 
-in the folder Property_Translator/
+Bounded_Model_Checker. The implementation and binary of 
+propTrans is included in the folder Property_Translator/
 
 
 Steps in reproducing the experiments

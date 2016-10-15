@@ -1,3 +1,8 @@
+column 1 = Benchmark name
+column 2 = Average Time inside Layer3 in Project (In milliseconds)
+column 3 = Average Time inside Omega-test in Layer2_Blast (In milliseconds)
+
+
 DeltaTR_OUT_CONTROL_QESMT_benchmark_conjunction_136.smt	126	489	
 DeltaTR_OUT_CONTROL_QESMT_benchmark_conjunction_220.smt	150	17	
 i_Cudd_bddLeqUnless_QESMT_benchmark_conjunction_1.smt	925	1800000	
@@ -7,8 +12,7 @@ i_Cudd_bddLeqUnless_QESMT_benchmark_conjunction_12.smt	2756	1800000
 i_Cudd_bddLeqUnless_QESMT_benchmark_conjunction_13.smt	665	1800000	
 i_Cudd_bddLeqUnless_QESMT_benchmark_conjunction_14.smt	2253	1800000	
 i_Cudd_bddLeqUnless_QESMT_benchmark_conjunction_15.smt	614	1800000	
-i_Cudd_bddLeqUnless_QESMT_benchmark_conjunction_16.smt	1887	1800000	
-i_Cudd_bddLeqUnless_QESMT_benchmark_conjunction_17.smt	2234	1800000	
+i_Cudd_bddLeqUnless_QESMT_benchmark_conjunction_16.smt	1887	1800000
 i_Cudd_bddLeqUnless_QESMT_benchmark_conjunction_19.smt	2008	1800000	
 i_Mtr_MakeGroup_QESMT_benchmark_conjunction_1.smt	9749	1800000	
 i_Mtr_MakeGroup_QESMT_benchmark_conjunction_11.smt	29892	1800000	

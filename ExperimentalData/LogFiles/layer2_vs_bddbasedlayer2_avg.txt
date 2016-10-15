@@ -1,3 +1,8 @@
+column 1 = Benchmark name
+column 2 = Average Time inside BddBasedLayer2 in ProjectWithBDDBasedLayer2 (In milliseconds)
+column 3 = Average Time inside Layer2 in Project (In milliseconds)
+
+
 DeltaTR_ADC_DATA_LTCH.smt	0.050000	10.100000	
 DeltaTR_CP_RP_DIFF.smt	0.080000	767.039978	
 DeltaTR_OUT_CONTROL.smt	0.066667	9.380281	

@@ -1,19 +1,15 @@
-All the experiments reported in the paper on the 
-SMTLIB benchmarks are done using the 
-executable Quantifier_Eliminator. 
-
 Quantifier_Eliminator reads the input SMTLIB file, 
 parses, and creates the dag for the file. If it is 
 a lindd benchmark, performs conversion to Boolean 
 combinations of LMCs. It then applies 
-the different algorithms described in the paper - 
+the different algorithms described in the paper --
 Project, Layer1_Blast, Layer1_OT, Layer2_OT, ProjectWithBDDBasedLayer2, 
 QE_SMT, QE_LMDD, QE_Combined, All_Path_QElim, QE_SMT_Mod, 
 Variant of QE_SMT with Layer1_Blast in place of Project, 
 Variant of QE_SMT with Layer1_OT in place of Project, 
 Variant of QE_SMT with Layer2_OT in place of Project, and 
 Variant of QE_SMT with ProjectWithBDDBasedLayer2 in place of Project, 
-and Layer1+Layer2 for preprocessing 
+and Variant of Layer1+Layer2 for preprocessing 
 depending on the command line options. 
 
 Dependencies : 
@@ -30,7 +26,7 @@ PATH before executing Quantifier_Eliminator in this case.
 To execute with different command-line options
 ----------------------------------------------
 
-I: For experiments at the level of conjunction of LMCs:
+I: For experiments at the level of conjunctions of LMCs:
 
 Let the benchmark's name be benchmark.smt.
 
@@ -60,7 +56,7 @@ Quantifier_Eliminator -LMI_handling_enabled -timeout=1800 -l2ot benchmark.smt
 Quantifier_Eliminator -LMI_handling_enabled -timeout=1800 -l2ub benchmark.smt
 
 
-6) To apply Layer1 and Layer2 for preprocessing SMTLIB files
+6) To apply Layer1 and Layer2 for preprocessing SMTLIB files before SMT solving
 
 Quantifier_Eliminator -LMI_handling_enabled -timeout=1800 -preprocess benchmark.smt
 

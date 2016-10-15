@@ -24,15 +24,12 @@ abstract transition relation. By default, all internal
 signals are existentially quantified out for generating the 
 abstract transition relation. 
 
+Experimenting with the vhdl designs
+-----------------------------------------------
 
-For experiments
-----------------
+All the experiments reported in the paper on the vhdl designs can be performed using the 
+executable ../Implementations/Bounded_Model_Checker/Core_Engine/Binary/Bounded_Model_Checker
 
-All the bounded model checking experiments reported in the 
-paper on these designs can be performed using the 
-executable ../Executables/Bounded_Model_Checker/Bounded_Model_Checker
-
-Please look at ../Executables/Bounded_Model_Checker/readme.txt 
-to see the details of executing 
-../Executables/Bounded_Model_Checker/Bounded_Model_Checker
+Please look at ../Implementations/Bounded_Model_Checker/HOW-TO-EXECUTE
+to see the details of executing Bounded_Model_Checker. 
 

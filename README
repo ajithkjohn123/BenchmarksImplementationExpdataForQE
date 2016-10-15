@@ -1,11 +1,9 @@
 Contents
 -----------
 
-This folder contains details of 
-experiments reported in the paper 
-"A Layered Algorithm for Quantifier 
-Elimination from Linear Modular 
-Constraints", 
+This folder contains details of experiments reported 
+in the paper "A Layered Algorithm for Quantifier 
+Elimination from Linear Modular Constraints", 
 submitted to the journal FMSD.
 
 Benchmarks/: Contains the benchmarks used for 
@@ -14,6 +12,7 @@ conducting the experiments reported in the paper.
 Implementations/: Contains the implementations and 
 executables used in the experiments. 
 
-ExperimentalData/: Logfiles generated from the 
-experiments and scripts for making the plots. 
+ExperimentalData/: Contains the logfiles generated 
+from the experiments and scripts for making the plots 
+reported in the paper. 
 

@@ -13,7 +13,7 @@ of Project with alternative QE techniques based on bit-blasting
 and conversion to linear integer arithmetic. 
 
 Folder vhdl_designs/ contains VHDL designs, property files etc. 
-used for evaluating utility of QE algorithms in bounded model checking. 
+used for evaluating utility of our QE algorithms in bounded model checking. 
 
 Folder preprocessing_benchmarks/ contains benchmarks used 
 for evaluating the utility of Layer1 and Layer2 as preprocessing 
@@ -130,21 +130,24 @@ fresh variables. Let $\psi$ be the formula $\neg\alpha\wedge\beta$.
 Note that $\varphi$ and $\psi$ are mutually inconsistent. The final 
 interpolation benchmark generated was $(\varphi, \psi)$. 
 
-There are two versions of each benchmark. 
+There are two versions of each benchmark inside interpolation_benchmarks/
 For benchmark_i, 
-benchmark_i_for_qe.smt gives $\exists X.\, \varphi$ given to QE\_Combined
-benchmark_i_for_mathsat.smt2 gives $(\varphi, \psi)$ given to Mathsat
+benchmark_i_for_qe.smt gives $\exists X.\, \varphi$ for input to QE\_Combined
+benchmark_i_for_mathsat.smt2 gives $(\varphi, \psi)$ for input to Mathsat
 
 
 Experimenting with the benchmarks
 -----------------------------------------------
 
 All the experiments reported in the paper on these benchmarks can be performed using the 
-executables ../Implementations/Quantifier_Eliminator/Binary/Quantifier_Eliminator and
-../Implementations/Bounded_Model_Checker/Core_Engine/Binary/Bounded_Model_Checker
+executables ../Implementations/Quantifier_Eliminator/Binary/Quantifier_Eliminator,
+../Implementations/Bounded_Model_Checker/Core_Engine/Binary/Bounded_Model_Checker, and 
+../Implementations/Mathsat/mathsat
 
-Please look at ../Implementations/Quantifier_Eliminator/HOW-TO-EXECUTE and
-../Implementations/Bounded_Model_Checker/HOW-TO-EXECUTE to see the details of executing 
+
+Please look at ../Implementations/Quantifier_Eliminator/HOW-TO-EXECUTE,
+../Implementations/Bounded_Model_Checker/HOW-TO-EXECUTE, and 
+../Implementations/Mathsat/HOW-TO-EXECUTE to see the details of executing 
 these executables. 
 
 

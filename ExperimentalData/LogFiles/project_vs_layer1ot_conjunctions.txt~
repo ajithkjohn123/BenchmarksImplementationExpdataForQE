@@ -1,3 +1,7 @@
+column 1 = Benchmark name
+column 2 = Average Time in Project (In milliseconds)
+column 3 = Average Time in Layer1_OT (In milliseconds)
+
 DeltaTR_CP_RP_DIFF_QESMT_benchmark_conjunction_1.smt	10	6	
 DeltaTR_CP_RP_DIFF_QESMT_benchmark_conjunction_10.smt	21	36	
 DeltaTR_CP_RP_DIFF_QESMT_benchmark_conjunction_11.smt	22	39	
@@ -28,6 +32,7 @@ TR_fpga_alive_modified4_QESMT_benchmark_conjunction_117.smt	22	49
 TR_fpga_alive_modified4_QESMT_benchmark_conjunction_168.smt	21	37	
 TR_fpga_alive_modified4_QESMT_benchmark_conjunction_169.smt	21	38	
 TR_vme_slave_modified2_QESMT_benchmark_conjunction_27.smt	5	5	
+TR_vme_slave_modified2_QESMT_benchmark_conjunction_28.smt	5	5	
 TR_vme_slave_modified2_QESMT_benchmark_conjunction_28.smt	5	5	
 TR_vme_slave_modified2_QESMT_benchmark_conjunction_80.smt	6	6	
 TR_vme_slave_modified2_QESMT_benchmark_conjunction_81.smt	5	5	

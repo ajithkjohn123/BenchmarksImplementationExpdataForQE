@@ -8,12 +8,12 @@ simplifyingSTP, and Mathsat used in the experiments.
 
 
 Folder Quantifier_Eliminator/ contains the 
-implementation of Quantifier_Eliminator. 
+implementation of Quantifier_Eliminator and its binary. 
 Please look at Quantifier_Eliminator/HOW-TO-EXECUTE 
 for details of executing Quantifier_Eliminator. 
 
 Folder Bounded_Model_Checker/ contains the 
-implementation of Bounded_Model_Checker. 
+implementation of Bounded_Model_Checker and its binary. 
 Please look at Bounded_Model_Checker/HOW-TO-EXECUTE 
 for details of executing Bounded_Model_Checker. 
 

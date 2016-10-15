@@ -1,3 +1,7 @@
+column 1 = Benchmark name
+column 2 = Time inside BddBasedLayer2 in ProjectWithBDDBasedLayer2 (In milliseconds)
+column 3 = Time inside Layer2 in Project (In milliseconds)
+
 DeltaTR_OUT_CONTROL_QESMT_benchmark_conjunction_136.smt	6	10	
 DeltaTR_OUT_CONTROL_QESMT_benchmark_conjunction_220.smt	7	10	
 DeltaTR_RFRNC_OUT_QESMT_benchmark_conjunction_38.smt	3	12	

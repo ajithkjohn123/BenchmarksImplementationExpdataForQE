@@ -29,6 +29,7 @@ TR_fpga_alive_modified4_QESMT_benchmark_conjunction_168.smt	21	27
 TR_fpga_alive_modified4_QESMT_benchmark_conjunction_169.smt	21	36	
 TR_vme_slave_modified2_QESMT_benchmark_conjunction_27.smt	5	5	
 TR_vme_slave_modified2_QESMT_benchmark_conjunction_28.smt	5	5	
+TR_vme_slave_modified2_QESMT_benchmark_conjunction_8.smt	5	5	
 TR_vme_slave_modified2_QESMT_benchmark_conjunction_80.smt	6	11	
 TR_vme_slave_modified2_QESMT_benchmark_conjunction_81.smt	5	6	
 TR_vme_slave_modified2_QESMT_benchmark_conjunction_87.smt	121	35	

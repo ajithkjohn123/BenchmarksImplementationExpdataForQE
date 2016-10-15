@@ -9,3 +9,26 @@ Folder LogFiles/ contains the log files.
 
 Folder ScriptFiles/ contains scripts for 
 generating plots using these log files. 
+
+Inside LogFiles/ 
+
+allpathqelim_vs_qelmdd.txt 		: Data for Fig.17(a) in paper
+layer3_vs_ot.txt 	   		: Data for Fig.19 in paper
+project_vs_layer1ot_conjunctions.txt	: Data for Fig.12(b) in paper
+layer2_vs_bddbasedlayer2_avg.txt	: Data for Fig.20(a) in paper
+project_call_details_lindd.txt		: Data for Table-2, Fig.6, Fig.7, Fig.10 in paper
+project_call_details_vhdl.txt		: Data for Table-2, Fig.8, Fig.9, Fig.11 in paper
+project_vs_layer1ot.txt			: Data for Fig.18(b) in paper                
+layer2_vs_bddbasedlayer2_conjunctions.txt:Data for Fig.14 in paper                       
+qesmtmod_vs_qesmt.txt			: Data for Fig.17(b) in paper
+layer2_vs_bddbasedlayer2.txt		: Data for Fig.20(b) in paper
+project_vs_layer1blast_conjunctions.txt	: Data for Fig.12(a) in paper
+qesmt_vs_qelmdd_vs_qecombined.txt	: Data for Fig.15(a), Fig.15(b), Fig.16  in paper 
+layer3_vs_ot_conjunctions.txt		: Data for Fig.13 in paper     
+project_vs_layer1blast.txt 		: Data for Fig.18(a) in paper
+
+Inside ScriptFiles/, 
+the log files are copied into the corresponding folder
+and then the gnuplot scripts are applied to generate 
+the plots. 
+

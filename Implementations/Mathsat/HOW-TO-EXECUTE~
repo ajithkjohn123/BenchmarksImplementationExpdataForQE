@@ -1,0 +1,11 @@
+The executable mathsat is obtained from http://mathsat.fbk.eu/download.html/
+We sincerely thank Alberto Griggio for providing us details of executing 
+Mathsat for interpolant generation. 
+
+Let benchmark.smt2 be an interpolation benchmark from 
+../../Benchmarks/interpolation_benchmarks/
+
+Execute mathsat benchmark.smt2 to generate interpolant 
+using Mathsat. 
+
+

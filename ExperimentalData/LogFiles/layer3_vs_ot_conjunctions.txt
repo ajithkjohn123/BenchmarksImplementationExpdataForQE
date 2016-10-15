@@ -1,3 +1,8 @@
+column 1 = Benchmark name
+column 2 = Time inside Layer3 in Project (In milliseconds)
+column 3 = Time inside Omega-test in Layer2_Blast (In milliseconds)
+
+
 DeltaTR_OUT_CONTROL_QESMT_benchmark_conjunction_136.smt	126	489	
 DeltaTR_OUT_CONTROL_QESMT_benchmark_conjunction_220.smt	150	17	
 i_Cudd_bddLeqUnless_QESMT_benchmark_conjunction_1.smt	925	1800000	
